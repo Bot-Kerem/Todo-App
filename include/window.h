@@ -12,6 +12,7 @@ class Window{
         Window(std::string title, int width, int height);
 
         bool shouldClose();
+        void swapBuffers();
 
         static void Init();
         static void PollEvents();

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "window.h"
+#include "scene.h"
 
 #include <string>
 
@@ -9,8 +10,10 @@ class App{
 		std::string APP_NAME = "TODO App";
 		int width = 800;
 		int height = 600;
+		
 		Window window{APP_NAME, width, height};
 
+		Scene m_MainScene{};
 	public:
 
 		App();
@@ -18,4 +21,6 @@ class App{
 		static void Init();
 
 		void run();
+
+		void build();
 };

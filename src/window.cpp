@@ -2,7 +2,6 @@
 #include <GLFW/glfw3.h>
 
 #include <stdexcept>
-#include <iostream>
 
 Window::Window(std::string title, int width, int height){
     Window::Init();
@@ -11,7 +10,6 @@ Window::Window(std::string title, int width, int height){
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     m_Window = glfwCreateWindow(width, height, title.c_str(), nullptr, nullptr);
-    std::cout << m_Window << std::endl;
 }
 
 void Window::Init(){
@@ -27,4 +25,8 @@ void Window::PollEvents(){
 
 bool Window::shouldClose(){
     return glfwWindowShouldClose(m_Window);
+}
+
+void Window::swapBuffers(){
+    glfwSwapBuffers(m_Window);
 }
