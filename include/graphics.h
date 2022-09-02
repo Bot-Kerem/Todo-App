@@ -1,6 +1,7 @@
 #pragma once
 
 #include "types.h"
+#include "shader.h"
 
 namespace Graphics{
     void LoadGraphics();
@@ -10,8 +11,9 @@ namespace Graphics{
     class VertexArray{
         public:
             VertexArray();
+            ~VertexArray();
             void bindVertexArray() const;
-            void vertexAttrib(unsigned int index, int size, int stride, const void* pointer);
+            void vertexAttrib(unsigned int index, int size, int stride, const void* pointer) const;
         private:
             unsigned int m_VertexArray{0};
     };
@@ -19,6 +21,7 @@ namespace Graphics{
     class VertexBuffer{
         public:
             VertexBuffer();
+            ~VertexBuffer();
             void bindVertexBuffer() const;
             void bufferData(void* data, signed long int size);
         private:
@@ -27,8 +30,11 @@ namespace Graphics{
 
     class FrameBuffer{
         public:
-            FrameBuffer();
-            void bindFrameBuffer() const;
+            FrameBuffer(int width, int height);
+            ~FrameBuffer();
+            void start() const;
+            void end() const;
+            unsigned int getImage();
         private:
             unsigned int m_FrameBuffer{0};
             unsigned int m_RenderBuffer{0};
@@ -38,12 +44,14 @@ namespace Graphics{
     struct Draw
     {
         public:
-            static void Square(Position position, Size size);
-            static void Circle(Position position, Size size);
+            static void Square(Position position, Size size, Color color);
+            static void Circle(Position position, Size size, Color color);
 
             static void InitDraw();
         private:
-            static VertexArray* SquareVAO;
+            static Shader* m_SquareShader;
+            static VertexArray* m_SquareVAO;
+            static VertexBuffer* m_SquareVBO;
     };
     
 }

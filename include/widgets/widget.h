@@ -3,7 +3,7 @@
 #include "graphics.h"
 #include "node.h"
 
-class Widget: public Node, protected Graphics::VertexArray, Graphics::VertexBuffer{
+class Widget: public Node{
     public:
-        virtual void draw();
+        virtual void draw() = 0;
 };
