@@ -13,5 +13,7 @@ namespace Graphics
         glClearColor(color.r, color.g, color.b, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
     }
-
+    void Draw::InitDraw(){
+        
+    }
 }

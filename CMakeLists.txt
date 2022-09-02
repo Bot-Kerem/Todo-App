@@ -10,9 +10,15 @@ set(PROJECT_SOURCES
         src/app.cpp
         src/window.cpp
         src/theme.cpp
+        src/node.cpp
         src/scene.cpp
         src/graphics.cpp
         src/glad.c
+        src/file.cpp
+        src/shader.cpp
+        #---------WIDGETS---------#
+        src/widgets/pill.cpp
+        #---------WIDGETS---------#
         )
 
 include_directories(include)
