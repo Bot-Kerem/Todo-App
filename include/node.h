@@ -8,8 +8,9 @@
 class Node{
     public:
         Node* Parent = nullptr;
-        std::unique_ptr<std::vector<Node>> Childs;
         Position getPosition();
+        void Append(Node* node);
     protected:
+        std::unique_ptr<std::vector<Node*>> Childs;
         Position m_Position{0.0f};
 };
