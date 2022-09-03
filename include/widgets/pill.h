@@ -1,8 +1,10 @@
 #pragma once
-#include "widget.h"
+
+#include "widgets/widget.h"
 
 class Pill: public Widget{
     public:
+        void _draw() override;
+
         Pill();
-        void draw() override;
 };

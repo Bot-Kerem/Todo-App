@@ -5,6 +5,9 @@
 
 namespace Graphics{
     Shader* Draw::m_SquareShader = nullptr;
+    Shader* Draw::m_ImageSquareShader = nullptr;
+    Shader* Draw::m_CircleShader = nullptr;
+
     VertexArray* Draw::m_SquareVAO = nullptr;
     VertexBuffer* Draw::m_SquareVBO = nullptr;
     #include <glad/glad.h>
@@ -99,7 +102,10 @@ namespace Graphics{
     void Draw::InitDraw(){
         std::cout << "TODO: COMPILING SHADERS..." << std::endl;
         m_SquareShader = new Shader{"./../shaders/square.vs", "./../shaders/square.fs"};
-
+        m_CircleShader = new Shader{"./../shaders/square.vs", "./../shaders/circle.fs"};
+        m_ImageSquareShader = new Shader{"./../shaders/square.vs", "./../shaders/image.fs"};
+        m_ImageSquareShader->use();
+        m_ImageSquareShader->setInt("Image", 1);
         
         std::cout << "TODO: CREATING BUFFERS..." << std::endl;
 
@@ -109,25 +115,46 @@ namespace Graphics{
         std::cout << "TODO: GENERATING SHAPES..." << std::endl;
 
         float SquareVertices[] = {
-            1.0f, -1.0f,
-            -1.0f, -1.0f,
-            1.0f, 1.0f,
-            -1.0f, 1.0f
+            1.0f, -1.0f, 1.0f, 0.0f,
+            -1.0f, -1.0f, 0.0f, 0.0f,
+            1.0f, 1.0f, 1.0f, 1.0f,
+            -1.0f, 1.0f, 0.0f, 1.0f,
         };
         m_SquareVBO->bindVertexBuffer();
         m_SquareVBO->bufferData(SquareVertices, sizeof(SquareVertices));
 
         m_SquareVAO->bindVertexArray();
-        m_SquareVAO->vertexAttrib(0, 2, sizeof(float) * 2, nullptr);
+        m_SquareVAO->vertexAttrib(0, 2, sizeof(float) * 4, nullptr);
+        m_SquareVAO->vertexAttrib(1, 2, sizeof(float) * 4, (void*)(sizeof(float) * 2));
 
         std::cout << "TODO: READY TO DRAW" << std::endl;
 
     }
+
     void Draw::Square(Position position, Size size, Color color){
         m_SquareShader->use();
         m_SquareShader->setVec2("Position", position);
         m_SquareShader->setVec2("Size", size);
         m_SquareShader->setVec3("Color", color);
+        m_SquareVAO->bindVertexArray();
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    }
+
+    void Draw::ImageSquare(Position position, Size size, unsigned int Image){
+        m_ImageSquareShader->use();
+        m_ImageSquareShader->setVec2("Position", position);
+        m_ImageSquareShader->setVec2("Size", size);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, Image);
+        m_SquareVAO->bindVertexArray();
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    }
+
+    void Draw::Circle(Position position, Size size, Color color){
+        m_CircleShader->use();
+        m_CircleShader->setVec2("Position", position);
+        m_CircleShader->setVec2("Size", size);
+        m_CircleShader->setVec3("Color", color);
         m_SquareVAO->bindVertexArray();
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     }

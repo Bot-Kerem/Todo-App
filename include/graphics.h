@@ -45,11 +45,14 @@ namespace Graphics{
     {
         public:
             static void Square(Position position, Size size, Color color);
+            static void ImageSquare(Position position, Size size, unsigned int Image);
             static void Circle(Position position, Size size, Color color);
 
             static void InitDraw();
         private:
             static Shader* m_SquareShader;
+            static Shader* m_ImageSquareShader;
+            static Shader* m_CircleShader;
             static VertexArray* m_SquareVAO;
             static VertexBuffer* m_SquareVBO;
     };

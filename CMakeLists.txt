@@ -17,6 +17,7 @@ set(PROJECT_SOURCES
         src/file.cpp
         src/shader.cpp
         #---------WIDGETS---------#
+        src/widgets/widget.cpp
         src/widgets/pill.cpp
         #---------WIDGETS---------#
         )
