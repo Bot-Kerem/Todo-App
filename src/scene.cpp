@@ -1,9 +1,8 @@
 #include "scene.h"
 #include "graphics.h"
-
-Scene* Scene::CurrentScene = nullptr;
+#include "widgets/widget.h"
 
 void Scene::draw(){
-    CurrentScene = this;
+    Widget::theme = &theme;
     Graphics::Clear(theme.Background);
 }

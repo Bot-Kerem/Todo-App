@@ -6,7 +6,7 @@
 namespace Graphics{
     void LoadGraphics();
     
-    void Clear(Color color);
+    void Clear(Color color, float Alpha = 1.0f);
 
     class VertexArray{
         public:
@@ -32,13 +32,16 @@ namespace Graphics{
         public:
             FrameBuffer(int width, int height);
             ~FrameBuffer();
+
             void start() const;
             void end() const;
+
             unsigned int getImage();
-        private:
-            unsigned int m_FrameBuffer{0};
-            unsigned int m_RenderBuffer{0};
-            unsigned int m_Image{0};
+
+        protected:
+            unsigned int m_FrameBuffer;
+            unsigned int m_Image;
+            unsigned int m_RenderBuffer;
     };
 
     struct Draw

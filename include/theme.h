@@ -4,6 +4,8 @@
 
 struct Theme{
     Color Background;
+    Color PillCircle;
+    Color PillSquare;
 };
 
 

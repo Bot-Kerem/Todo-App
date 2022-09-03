@@ -19,6 +19,7 @@ void App::run(){
 
         m_MainScene.draw();
         pill.draw();
+        
         window.swapBuffers();
     }
 }
