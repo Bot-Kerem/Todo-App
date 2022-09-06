@@ -1,7 +1,6 @@
 #include "scene.h"
 #include "graphics.h"
 #include "widgets/widget.h"
-#include <iostream>
 
 void Scene::_draw(){
     Widget::theme = &theme;

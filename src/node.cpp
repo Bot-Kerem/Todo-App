@@ -1,8 +1,6 @@
 #include "node.h"
 #include "widgets/widget.h"
 
-#include <iostream>
-
 Position Node::getPosition(){
     return m_Position + (Parent ? Parent->getPosition() : Position(0.0f));
 }

@@ -8,8 +8,6 @@
 
 #include "scene.h"
 
-#include <iostream>
-
 void* Window::selectedWidget = nullptr;
 
 Window::Window(std::string title, int width, int height){

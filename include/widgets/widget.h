@@ -1,10 +1,11 @@
 #pragma once
 
 #include "graphics.h"
-#include "node.h"
 #include "theme.h"
 
 #include <memory>
+
+#include "node.h"
 
 class Widget: public Node{
     public:

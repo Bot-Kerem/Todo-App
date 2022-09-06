@@ -1,7 +1,5 @@
 #include "widgets/widget.h"
 
-#include <iostream>
-
 Theme* Widget::theme = nullptr;
 bool Widget::EditMode = false;
 
@@ -15,7 +13,6 @@ Widget::Widget(Size size): m_Size(size){
 }
 
 void Widget::update(){
-    std::cout << "updated" << std::endl;
     m_FrameBuffer->start();
     Graphics::setViewport(m_Size);
     Graphics::Clear(Color(0.0f, 1.0f, 0.0f), 0.0f);

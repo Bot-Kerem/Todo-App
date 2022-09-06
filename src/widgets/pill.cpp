@@ -1,6 +1,6 @@
 #include "widgets/pill.h"
 #include "scene.h"
-#include <iostream>
+
 Pill::Pill(Size size): Widget(size){
     
 }
