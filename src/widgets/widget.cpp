@@ -22,4 +22,7 @@ void Widget::update(){
         ((Widget*)widget)->draw();
     }
     m_FrameBuffer->end();
+    if(Parent){
+        ((Widget*)Parent)->update();
+    }
 }

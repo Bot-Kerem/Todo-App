@@ -12,5 +12,4 @@ void Node::Append(Node* node){
     node->Parent = this;
     node->m_Position = ((Widget*)node)->m_Size;
     ((Widget*)node)->update();
-    ((Widget*)this)->update();
 }
