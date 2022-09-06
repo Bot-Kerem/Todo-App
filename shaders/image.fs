@@ -5,6 +5,7 @@ out vec4 FragColor;
 in vec2 TexCoord;
 
 uniform sampler2D Image;
+uniform vec3 Main;
 
 void main(){
     
@@ -12,5 +13,5 @@ void main(){
     if(tex.a == 0.0f){
         discard;
     }
-    FragColor = tex;
+    FragColor = vec4(Main, 1.0f) * tex;
 }

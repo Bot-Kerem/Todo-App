@@ -8,6 +8,7 @@ class Scene: public Widget{
         Scene(Size size);
         Theme theme = getDefaultTheme();
         
+        Widget* collide(float xpos, float ypos) override;
         void _draw() override;
 
 };

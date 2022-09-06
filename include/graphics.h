@@ -48,9 +48,9 @@ namespace Graphics{
     struct Draw
     {
         public:
-            static void Square(Position position, Size size, Color color, Size resolution = Size(800, 600));
-            static void ImageSquare(Position position, Size size, unsigned int Image, Size resolution = Size(800, 600));
-            static void Circle(Position position, Size size, Color color, Size resolution = Size(800, 600));
+            static void Square(Position position, Size size, Color color, Size resolution = Size(800, 600), Color Main = Color(1.0f));
+            static void ImageSquare(Position position, Size size, unsigned int Image, Size resolution = Size(800, 600), Color Main = Color(1.0f));
+            static void Circle(Position position, Size size, Color color, Size resolution = Size(800, 600), Color Main = Color(1.0f));
 
             static void InitDraw();
         private:

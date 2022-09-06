@@ -6,6 +6,8 @@ struct Theme{
     Color Background;
     Color PillCircle;
     Color PillSquare;
+    Color EditModeHover;
+    Color Main;
 };
 
 

@@ -137,33 +137,36 @@ namespace Graphics{
 
     }
 
-    void Draw::Square(Position position, Size size, Color color, Size resolution){
+    void Draw::Square(Position position, Size size, Color color, Size resolution, Color Main){
         m_SquareShader->use();
         m_SquareShader->setVec2("Position", position);
         m_SquareShader->setVec2("Size", size);
         m_SquareShader->setVec3("Color", color);
         m_SquareShader->setVec2("ScreenResolution", resolution);
+        m_SquareShader->setVec3("Main", Main);
         m_SquareVAO->bindVertexArray();
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     }
 
-    void Draw::ImageSquare(Position position, Size size, unsigned int Image, Size resolution){
+    void Draw::ImageSquare(Position position, Size size, unsigned int Image, Size resolution, Color Main){
         m_ImageSquareShader->use();
         m_ImageSquareShader->setVec2("Position", position);
         m_ImageSquareShader->setVec2("Size", size);
         m_ImageSquareShader->setVec2("ScreenResolution", resolution);
+        m_ImageSquareShader->setVec3("Main", Main);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, Image);
         m_SquareVAO->bindVertexArray();
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     }
 
-    void Draw::Circle(Position position, Size size, Color color, Size resolution){
+    void Draw::Circle(Position position, Size size, Color color, Size resolution, Color Main){
         m_CircleShader->use();
         m_CircleShader->setVec2("Position", position);
         m_CircleShader->setVec2("Size", size);
         m_CircleShader->setVec3("Color", color);
-        m_CircleShader->setVec2("ScreenResolution", resolution); 
+        m_CircleShader->setVec2("ScreenResolution", resolution);
+        m_CircleShader->setVec3("Main", Main);
         m_SquareVAO->bindVertexArray();
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     }
