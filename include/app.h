@@ -13,7 +13,7 @@ class App{
 		
 		Window window{APP_NAME, width, height};
 
-		Scene m_MainScene{};
+		Scene m_MainScene{Size(800, 600)};
 	public:
 
 		App();

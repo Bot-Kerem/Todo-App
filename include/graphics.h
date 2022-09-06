@@ -4,9 +4,10 @@
 #include "shader.h"
 
 namespace Graphics{
-    void LoadGraphics();
     
     void Clear(Color color, float Alpha = 1.0f);
+
+    void setViewport(Size size);
 
     class VertexArray{
         public:
@@ -47,9 +48,9 @@ namespace Graphics{
     struct Draw
     {
         public:
-            static void Square(Position position, Size size, Color color);
-            static void ImageSquare(Position position, Size size, unsigned int Image);
-            static void Circle(Position position, Size size, Color color);
+            static void Square(Position position, Size size, Color color, Size resolution = Size(800, 600));
+            static void ImageSquare(Position position, Size size, unsigned int Image, Size resolution = Size(800, 600));
+            static void Circle(Position position, Size size, Color color, Size resolution = Size(800, 600));
 
             static void InitDraw();
         private:

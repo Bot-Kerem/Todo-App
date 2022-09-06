@@ -12,19 +12,18 @@ App::App() = default;
 void App::run(){
     build();
 
-    Pill pill{};
+    Pill pill{Size(200, 50)};
+    m_MainScene.Append(&pill);
 
     while (!window.shouldClose()){
         Window::PollEvents();
 
         m_MainScene.draw();
-        pill.draw();
         
         window.swapBuffers();
     }
 }
 
 void App::build(){
-    Graphics::LoadGraphics();
     Graphics::Draw::InitDraw();
 }

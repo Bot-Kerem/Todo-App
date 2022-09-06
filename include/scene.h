@@ -1,12 +1,13 @@
 #pragma once
 
-#include "node.h"
+#include "widgets/widget.h"
 #include "theme.h"
 
-class Scene: public Node{
+class Scene: public Widget{
     public:
+        Scene(Size size);
         Theme theme = getDefaultTheme();
         
-        void draw();
+        void _draw() override;
 
 };

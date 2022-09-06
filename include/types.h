@@ -5,4 +5,4 @@
 
 typedef glm::vec3 Color;
 typedef glm::vec2 Position;
-typedef glm::vec2 Size;
+typedef glm::ivec2 Size;

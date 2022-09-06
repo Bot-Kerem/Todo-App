@@ -104,7 +104,6 @@ void Shader::setMat3(const char* name, const glm::mat3* ptrValue)
 {
     glUniformMatrix3fv(getUniformLocation(name), 1, GL_FALSE, (float*)&ptrValue[0][0]);
 }
-
 void Shader::constructor(const char* vertexPath, const char* fragmentPath)
 {
     {

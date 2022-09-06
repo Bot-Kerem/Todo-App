@@ -11,6 +11,6 @@ class Node{
         Position getPosition();
         void Append(Node* node);
     protected:
-        std::unique_ptr<std::vector<Node*>> Childs;
+        std::vector<Node*> Childs;
         Position m_Position{0.0f};
 };

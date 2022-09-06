@@ -8,10 +8,10 @@
 
 class Widget: public Node{
     public:
-        Widget();
+        Widget(Size size);
         void draw();
 
-        Size size{0.5f};
+        Size m_Size;
         
         static Theme* theme;
     protected:

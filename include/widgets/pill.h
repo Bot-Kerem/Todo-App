@@ -6,5 +6,5 @@ class Pill: public Widget{
     public:
         void _draw() override;
 
-        Pill();
+        Pill(Size size);
 };

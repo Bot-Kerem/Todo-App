@@ -11,14 +11,16 @@ namespace Graphics{
     VertexArray* Draw::m_SquareVAO = nullptr;
     VertexBuffer* Draw::m_SquareVBO = nullptr;
     #include <glad/glad.h>
-    void LoadGraphics(){
-        gladLoadGL();
-    }
 
     void Clear(glm::vec3 color, float Alpha){
         glClearColor(color.r, color.g, color.b, Alpha);
         glClear(GL_COLOR_BUFFER_BIT);
     }
+
+    void setViewport(Size size){
+        glViewport(0.0f, 0.0f, size.x, size.y);
+    }
+
 
     //----------Vertex Array----------//
     VertexArray::VertexArray(){
@@ -68,7 +70,7 @@ namespace Graphics{
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_Image, 0);
-
+        
         glGenRenderbuffers(1, &m_RenderBuffer);
         glBindRenderbuffer(GL_RENDERBUFFER, m_RenderBuffer);
         glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
@@ -77,6 +79,7 @@ namespace Graphics{
         if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE){
             throw std::runtime_error("ERROR::FRAMEBUFFER:: Framebuffer is not complete!");
         }
+        
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
     unsigned int FrameBuffer::getImage(){
@@ -102,10 +105,13 @@ namespace Graphics{
     void Draw::InitDraw(){
         std::cout << "TODO: COMPILING SHADERS..." << std::endl;
         m_SquareShader = new Shader{"./../shaders/square.vs", "./../shaders/square.fs"};
+        m_SquareShader->setVec2("ScreenResolution", glm::vec2(1, 1));
         m_CircleShader = new Shader{"./../shaders/square.vs", "./../shaders/circle.fs"};
+        m_CircleShader->setVec2("ScreenResolution", Size(800, 600));
         m_ImageSquareShader = new Shader{"./../shaders/square.vs", "./../shaders/image.fs"};
         m_ImageSquareShader->use();
         m_ImageSquareShader->setInt("Image", 0);
+        m_ImageSquareShader->setVec2("ScreenResolution", Size(800, 600));
         
         std::cout << "TODO: CREATING BUFFERS..." << std::endl;
 
@@ -131,30 +137,33 @@ namespace Graphics{
 
     }
 
-    void Draw::Square(Position position, Size size, Color color){
+    void Draw::Square(Position position, Size size, Color color, Size resolution){
         m_SquareShader->use();
         m_SquareShader->setVec2("Position", position);
         m_SquareShader->setVec2("Size", size);
         m_SquareShader->setVec3("Color", color);
+        m_SquareShader->setVec2("ScreenResolution", resolution);
         m_SquareVAO->bindVertexArray();
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     }
 
-    void Draw::ImageSquare(Position position, Size size, unsigned int Image){
+    void Draw::ImageSquare(Position position, Size size, unsigned int Image, Size resolution){
         m_ImageSquareShader->use();
         m_ImageSquareShader->setVec2("Position", position);
         m_ImageSquareShader->setVec2("Size", size);
+        m_ImageSquareShader->setVec2("ScreenResolution", resolution);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, Image);
         m_SquareVAO->bindVertexArray();
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     }
 
-    void Draw::Circle(Position position, Size size, Color color){
+    void Draw::Circle(Position position, Size size, Color color, Size resolution){
         m_CircleShader->use();
         m_CircleShader->setVec2("Position", position);
         m_CircleShader->setVec2("Size", size);
         m_CircleShader->setVec3("Color", color);
+        m_CircleShader->setVec2("ScreenResolution", resolution); 
         m_SquareVAO->bindVertexArray();
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     }
