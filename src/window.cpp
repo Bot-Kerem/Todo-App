@@ -1,4 +1,5 @@
 #include "window.h"
+#include "graphics.h"
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -15,6 +16,7 @@ Window::Window(std::string title, int width, int height){
     glfwMakeContextCurrent(m_Window);
 
     gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+    Graphics::Draw::InitDraw();
 }
 
 void Window::Init(){

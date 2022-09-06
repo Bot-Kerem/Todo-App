@@ -12,6 +12,8 @@ class Widget: public Node{
         void draw();
 
         Size m_Size;
+
+        void update();
         
         static Theme* theme;
     protected:

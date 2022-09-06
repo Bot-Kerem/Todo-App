@@ -25,5 +25,5 @@ void App::run(){
 }
 
 void App::build(){
-    Graphics::Draw::InitDraw();
+    m_MainScene.update();
 }

@@ -12,5 +12,5 @@ class Node{
         void Append(Node* node);
     protected:
         std::vector<Node*> Childs;
-        Position m_Position{0.0f};
+        Position m_Position{0};
 };
