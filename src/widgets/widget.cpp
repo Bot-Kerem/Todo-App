@@ -15,6 +15,7 @@ Widget::Widget(Size size): m_Size(size){
 }
 
 void Widget::update(){
+    std::cout << "updated" << std::endl;
     m_FrameBuffer->start();
     Graphics::setViewport(m_Size);
     Graphics::Clear(Color(0.0f, 1.0f, 0.0f), 0.0f);
@@ -25,6 +26,5 @@ void Widget::update(){
     m_FrameBuffer->end();
     if(Parent){
         ((Widget*)Parent)->update();
-        std::cout << "updated" << std::endl;
     }
 }

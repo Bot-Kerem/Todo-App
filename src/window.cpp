@@ -48,7 +48,6 @@ void Window::swapBuffers(){
 
 void Window::setUserPointer(void* pointer){
     glfwSetWindowUserPointer(m_Window, pointer);
-    selectedWidget = pointer;
 }
 
 void Window::KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods){
@@ -56,25 +55,30 @@ void Window::KeyCallback(GLFWwindow* window, int key, int scancode, int action, 
     if(key == GLFW_KEY_TAB && action == GLFW_PRESS){
         Widget::EditMode = !(Widget::EditMode);
     }
+    if(key == GLFW_KEY_W && action == GLFW_PRESS){
+        scene->update();
+    }
 }
 
 void Window::CursorPosCallback(GLFWwindow* window, double posx, double posy){
     auto scene = static_cast<Scene*>(glfwGetWindowUserPointer(window));
     Widget* selectedItem = scene->collide(posx, posy);
-    if(selectedItem != nullptr){
-        if(selectedWidget != selectedItem){
-            static_cast<Widget*>(selectedWidget)->Hover = false;
+    if(Widget::EditMode){
+        if(selectedItem){
+        if(selectedItem != selectedWidget){
+            if(selectedWidget){
+                static_cast<Widget*>(selectedWidget)->Hover = false;
+            }
             selectedWidget = selectedItem;
             selectedItem->Hover = true;
             selectedItem->update();
         }
     }
-    else{
-        if(selectedWidget != nullptr){
-            static_cast<Widget*>(selectedWidget)->Hover = false;
-            selectedWidget = nullptr;
-            std::cout << "UNHOVERED" << std::endl;
-        }
+    else if(selectedWidget){
         
+        static_cast<Widget*>(selectedWidget)->Hover = false;
+        static_cast<Widget*>(selectedWidget)->update();
+        selectedWidget = nullptr;
+    }
     }
 }

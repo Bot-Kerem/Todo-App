@@ -10,8 +10,8 @@ void Scene::_draw(){
 
 Widget* Scene::collide(float xpos, float ypos){
     if(xpos < (m_Position.x + abs(m_Size.x)) && ypos <  (m_Position.y + abs(m_Size.y))){
-        for(auto widget: Childs){
-            Widget* yes = static_cast<Widget*>(widget)->collide(xpos, ypos);
+        for(int i = Childs.size() - 1; i >= 0; i--){
+            Widget* yes = static_cast<Widget*>(Childs[i])->collide(xpos, ypos);
             if(yes){
                 return yes;
             }

@@ -1,5 +1,6 @@
 #include "widgets/pill.h"
 #include "scene.h"
+#include <iostream>
 Pill::Pill(Size size): Widget(size){
     
 }
@@ -11,5 +12,14 @@ void Pill::_draw(){
 }
 
 Widget* Pill::collide(float xpos, float ypos){
-    return this;;
+    if(xpos >= ((getPosition().x - m_Size.x + m_Size.y) / 2) && xpos <= ((getPosition().x + m_Size.x - m_Size.y) / 2) && ypos <= ((getPosition().y + m_Size.y) / 2) && ypos >= ((getPosition().y - m_Size.y) / 2)){
+        return this;
+    }
+    if(m_Size.y / 2 >= glm::distance(glm::vec2(((getPosition().x - m_Size.x + m_Size.y) / 2), getPosition().y / 2), glm::vec2(xpos, ypos))){
+        return this;
+    }
+    if(m_Size.y / 2 >= glm::distance(glm::vec2(((getPosition().x + m_Size.x - m_Size.y) / 2), getPosition().y / 2), glm::vec2(xpos, ypos))){
+        return this;
+    }
+    return nullptr;
 }

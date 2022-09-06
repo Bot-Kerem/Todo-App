@@ -9,6 +9,7 @@ class Node{
     public:
         Node* Parent = nullptr;
         Position getPosition();
+        void setPosition(Position position);
         void Append(Node* node);
     protected:
         std::vector<Node*> Childs;

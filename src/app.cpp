@@ -18,6 +18,11 @@ void App::run(){
     Pill pill{Size(200, 50)};
     m_MainScene.Append(&pill);
 
+    Pill pill2{Size(300, 100)};
+    m_MainScene.Append(&pill2);
+    pill.setPosition({500, 100});
+    pill.update();
+
     while (!window.shouldClose()){
         Window::PollEvents();
 
