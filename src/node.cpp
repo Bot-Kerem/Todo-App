@@ -12,6 +12,6 @@ void Node::setPosition(Position position){
 void Node::Append(Node* node){
     Childs.push_back(node);
     node->Parent = this;
-    node->m_Position = Position(400, 400); // ((Widget*)node)->m_Size;
+    node->m_Position = Position(500, 500); // ((Widget*)node)->m_Size;
     ((Widget*)node)->update();
 }

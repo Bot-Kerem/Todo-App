@@ -40,7 +40,7 @@ namespace Graphics{
         glEnableVertexAttribArray(index);
     }
     //----------Vertex Array----------//
-    
+
     //----------Vertex Buffer---------//
     VertexBuffer::VertexBuffer(){
         glGenBuffers(1, &m_VertexBuffer);
@@ -70,7 +70,7 @@ namespace Graphics{
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_Image, 0);
-        
+
         glGenRenderbuffers(1, &m_RenderBuffer);
         glBindRenderbuffer(GL_RENDERBUFFER, m_RenderBuffer);
         glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
@@ -79,7 +79,7 @@ namespace Graphics{
         if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE){
             throw std::runtime_error("ERROR::FRAMEBUFFER:: Framebuffer is not complete!");
         }
-        
+
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
     }
     unsigned int FrameBuffer::getImage(){
@@ -107,12 +107,12 @@ namespace Graphics{
         m_SquareShader = new Shader{"./../shaders/square.vs", "./../shaders/square.fs"};
         m_SquareShader->setVec2("ScreenResolution", glm::vec2(1, 1));
         m_CircleShader = new Shader{"./../shaders/square.vs", "./../shaders/circle.fs"};
-        m_CircleShader->setVec2("ScreenResolution", Size(800, 600));
+        m_CircleShader->setVec2("ScreenResolution", Size(1920, 1080));
         m_ImageSquareShader = new Shader{"./../shaders/square.vs", "./../shaders/image.fs"};
         m_ImageSquareShader->use();
         m_ImageSquareShader->setInt("Image", 0);
-        m_ImageSquareShader->setVec2("ScreenResolution", Size(800, 600));
-        
+        m_ImageSquareShader->setVec2("ScreenResolution", Size(1920, 1080));
+
         std::cout << "TODO: CREATING BUFFERS..." << std::endl;
 
         m_SquareVAO = new VertexArray{};

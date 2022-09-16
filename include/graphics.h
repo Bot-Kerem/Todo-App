@@ -4,7 +4,7 @@
 #include "shader.h"
 
 namespace Graphics{
-    
+
     void Clear(Color color, float Alpha = 1.0f);
 
     void setViewport(Size size);
@@ -48,9 +48,9 @@ namespace Graphics{
     struct Draw
     {
         public:
-            static void Square(Position position, Size size, Color color, Size resolution = Size(800, 600), Color Main = Color(1.0f));
-            static void ImageSquare(Position position, Size size, unsigned int Image, Size resolution = Size(800, 600), Color Main = Color(1.0f));
-            static void Circle(Position position, Size size, Color color, Size resolution = Size(800, 600), Color Main = Color(1.0f));
+            static void Square(Position position, Size size, Color color, Size resolution = Size(1920, 1080), Color Main = Color(1.0f));
+            static void ImageSquare(Position position, Size size, unsigned int Image, Size resolution = Size(1920, 1080), Color Main = Color(1.0f));
+            static void Circle(Position position, Size size, Color color, Size resolution = Size(1920, 1080), Color Main = Color(1.0f));
 
             static void InitDraw();
         private:
@@ -60,5 +60,5 @@ namespace Graphics{
             static VertexArray* m_SquareVAO;
             static VertexBuffer* m_SquareVBO;
     };
-    
+
 }

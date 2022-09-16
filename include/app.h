@@ -6,14 +6,14 @@
 #include <string>
 
 class App{
-	private:	
+	private:
 		std::string APP_NAME = "TODO App";
-		int width = 800;
-		int height = 600;
-		
+		int width = 1920;
+		int height = 1080;
+
 		Window window{APP_NAME, width, height};
 
-		Scene m_MainScene{Size(800, 600)};
+		Scene m_MainScene{Size(1920, 1080)};
 	public:
 
 		App();

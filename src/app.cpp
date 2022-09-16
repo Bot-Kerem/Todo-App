@@ -17,14 +17,14 @@ void App::run(){
 
     Pill pill2{Size(300, 100)};
     m_MainScene.Append(&pill2);
-    pill.setPosition(glm::vec2{500, 100});
+    pill.setPosition(glm::vec2{500, 200});
     pill.update();
 
     while (!window.shouldClose()){
         Window::PollEvents();
 
         m_MainScene.draw();
-        
+
         window.swapBuffers();
     }
 }
